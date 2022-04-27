@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"  th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+
+
+<section class="section">
+    <div>
+        <div class="container">
+
+                    <h5 class="card-title">Liste produit</h5>
+
+                    <!-- Default Table -->
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Libelle</th>
+                            <th scope="col">Quantite Stock</th>
+                            <th scope="col">Prix</th>
+                            <th></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="p:${listProduit}">
+                            <th scope="row" th:text="${p.id}"></th>
+                            <td th:text="${p.libelle}"></td>
+                            <td th:text="${p.qteStok}"></td>
+                            <td th:text="${p.prix}"></td>
+
+                            <td>
+                                <a th:href="@{/vente/Create/{id}(id=${p.id})}">Ajouter</a>
+                                <a th:href="@{/vente/Create/{id}(id=${p.id})}">Edit |</a>
+
+
+                            </td>
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+                    <!-- End Default Table Example -->
+
+
+
+        </div>
+
+        <div  class="container" >
+
+
+                    <h5 class="card-title">Liste selectioner</h5>
+
+                    <!-- Table with stripped rows -->
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Libelle</th>
+                            <th scope="col">Prix</th>
+                            <th></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="p:${listLigne}">
+                            <th scope="row" th:text="${p.id}"></th>
+                            <td th:text="${p.libelle}"></td>
+
+                            <td th:text="${p.prix}"></td>
+
+                            <td>
+                                <a th:href="@{/vente/delete/{id}(id=${p.id})}">Retirer</a>
+
+                            </td>
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+
+
+
+        </div>
+
+
+    </div>
+</section>
+
+
+
+<!--<div class="container">
+    <h2>Formulaire de saisie d'une vente </h2>
+    <form th:action="@{Vente/Save}" method="post" >
+        <div>
+            <input type="submit" value="Enregistrer" class="btn btn-primary">
+        </div>
+
+    </form>
+
+</div>-->
+<script rel="text/javascript"  th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
