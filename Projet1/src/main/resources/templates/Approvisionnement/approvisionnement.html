@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
   <meta charset="utf-8">
@@ -181,7 +181,7 @@
           </div>
           </ul>
         </a>
-      </div></ul><!-- End Login Page Nav -->
+      </div></ul><! End Login Page Nav -->
     </ul>
 
   </aside><!-- End Sidebar-->
@@ -206,14 +206,16 @@
               <h5 class="card-title">Veuillez remplir les champs ci-dessous</h5>
   
               <!-- Horizontal Form -->
-              <form>
+              <form th:action="@{/approvisionnement/save}" th:object="${UnProduit}" method="post">
 
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">Produit</label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>*</option>
-                      <option value="1">*</option>
+                    <select class="form-select" aria-label="Default select example" name="produit_id" required>
+                      <option selected>Choisir</option>
+                      <option value="1" th:each="Produit:${listProduit}"
+                              th:value="${Produit.id}"
+                              th:text="${Produit.libelle}">*</option>
                       <option value="2">**</option>
                       <option value="3">***</option>
                     </select>
@@ -221,9 +223,9 @@
                 </div>
 
                 <div class="row mb-3">
-                  <label for="inputEmail3" class="col-sm-2 col-form-label">Quantité</label>
+                  <label class="col-sm-2 col-form-label">Quantité</label>
                   <div class="col-sm-10">
-                    <input type="number" class="form-control" id="inputText" autofocus>
+                    <input type="number" class="form-control" name="qte" id="inputText" autofocus>
                   </div>
                 </div>
               
@@ -257,10 +259,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr th:each="item : ${produits}">
                     <th scope="row"></th>
-                    <td>Tomate</td>
-                    <td>50</td>
+                    <td th:text="${item.produit_id}">Tomate</td>
+                    <td th:text="${item.qtSeuil}">50</td>
                     <td>
                       <button type="#" class="btn btn-primary "><i class="bi bi-vector-pen"></i> Modifier</button>
                       <button type="#" class="btn btn-danger"><i class="bi bi-trash"></i> Supprimer</button>

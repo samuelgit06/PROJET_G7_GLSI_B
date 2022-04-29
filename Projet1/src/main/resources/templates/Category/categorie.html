@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
   <meta charset="utf-8">
@@ -206,12 +206,12 @@
               <h5 class="card-title">Veuillez remplir les champs ci-dessous</h5>
   
               <!-- Horizontal Form -->
-              <form>
+              <form th:action="@{/Category/save}" method="post">
 
                 <div class="row mb-3">
-                  <label for="inputEmail3" class="col-sm-2 col-form-label">Description</label>
+                  <label class="col-sm-2 col-form-label">Description</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputText" autofocus>
+                    <input type="text" class="form-control" name="designation" id="inputText" autofocus>
                   </div>
                 </div>
               
@@ -244,12 +244,12 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr th:each = "Category:${ListCategory}">
                     <th scope="row"></th>
-                    <td>Bien-être</td>
+                    <td th:text="${Category.designation}">Bien-être</td>
                     <td>
-                      <button type="#" class="btn btn-primary "><i class="bi bi-vector-pen"></i> Modifier</button>
-                      <button type="#" class="btn btn-danger"><i class="bi bi-trash"></i> Supprimer</button>
+                      <a th:href="@{/Category/edit/{id}(id=${Category.id})}"><button type="#" class="btn btn-primary "><i class="bi bi-vector-pen"></i> Modifier</button></a>
+                      <a th:href="@{/Category/delete/{id}(id=${Category.id})}"><button type="#" class="btn btn-danger"><i class="bi bi-trash"></i> Supprimer</button></a>
                     </td>
                   </tr>
                   <tr>
