@@ -39,8 +39,8 @@ public class ProduitController {
     public String saveProduit(Produit produit)
     {
 
-        produit.setDateCreation(LocalDate.now());
-        produit.setQtStock(0);
+       /* produit.setDateCreation(LocalDate.now());
+        produit.setQtStock(0);*/
         produitService.saveProduit(produit);
         return "redirect:/produits/afficher";
     }
